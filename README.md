@@ -210,7 +210,7 @@ mkdir ~/backup/{html,pdf,plaintext}
 #### Clone the repository
 ```
 cd ~/scripts
-git clone http://localhost:3000/Fillicia/Bookstack-Backup_to_Gdrive.git
+git clone http://localhost:3000/Fillicia/Bookstack-Backup_to_Gdrive.git .
 chmod a+x ./backup.sh
 ```
 
