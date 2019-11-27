@@ -1,5 +1,5 @@
 # Bookstack-Backup_to_Gdrive
-#### This is a personnal backup script I made to clone my bookstack books to google drive as a backup process. Be aware that this is provided as a base for your own backup solution. You WILL have to modify the backup.sh file to fit your needs. This was installed on an Ubuntu 18.04 machine.
+#### This is a personnal backup script I made to clone my bookstack books to google drive as a backup process. Be aware that this is provided as a base for your own backup solution. You WILL have to modify the vars.sh file to fit your needs. This was installed on an Ubuntu 18.04 machine.
 
 
 #### INSTALL RCLONE (Shoutout to jeremyj563 for the rclone section)
@@ -201,7 +201,7 @@ e/n/d/r/c/s/q> q
 
 #### Make local dir
 ```
-mkdir ~/scripts 
+mkdir ~/scripts
 mkdir ~/backup
 mkdir ~/backup/{html,pdf,plaintext}
 ```
@@ -211,13 +211,15 @@ mkdir ~/backup/{html,pdf,plaintext}
 ```
 cd ~/scripts
 git clone https://github.com/Fillicia/Bookstack-Backup-to-Googledrive.git .
-chmod a+x ./backup.sh
+chmod a+x ./backupremote.sh
+chmod a+x ./backuplocal.sh
 ```
 
 #### Create the Crontab rule
 ```
 crontab -e
 
-# backup and rclone to Gdrive - set at 4 am
-0 4 * * * ~/scripts/backup.sh > /dev/null
+# backup and rclone to Gdrive - set at 3 and 4 am respectively
+0 3 * * * ~/scripts/backuplocal.sh > /dev/null
+0 4 * * * ~/scripts/backupremote.sh > /dev/null
 ```

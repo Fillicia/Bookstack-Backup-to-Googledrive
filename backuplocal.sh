@@ -1,14 +1,6 @@
 #!/bin/bash
 
-url="http://localhost/books/"   #change to your wiki url, must end with "books/"
-backupfolder="/home/backup/"
-remote="remote:Bookstack"
-
-
-#Define one or multiple format you wish to backup
-html="true"
-pdf="true"
-plaintext="true"
+source ~/scripts/vars.sh
 
 wget -qO- $url | grep -o "$url[a-zA-Z0-9./?=_-]*" | sort -u | while read -r line ; do
 #wget -qO- $url ////// gets the html from the /books/ page
@@ -26,5 +18,3 @@ wget -qO- $url | grep -o "$url[a-zA-Z0-9./?=_-]*" | sort -u | while read -r line
         wget $line"/export/plaintext" -N -q -O $backupfolder"/plaintext/"$filename".plaintext"
     fi
 done
-
-rclone sync --quiet --size-only --no-update-modtime --drive-use-trash=false $backupfolder $remote
